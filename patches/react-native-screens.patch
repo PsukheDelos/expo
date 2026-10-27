@@ -1,8 +1,8 @@
-diff --git a/ios/RNSNavigationItemCustomizer.h b/ios/RNSNavigationItemCustomizer.h
+diff --git a/ios/RNSNavigationItemCustomizerProtocol.h b/ios/RNSNavigationItemCustomizerProtocol.h
 new file mode 100644
 index 0000000..a29cc9c
 --- /dev/null
-+++ b/ios/RNSNavigationItemCustomizer.h
++++ b/ios/RNSNavigationItemCustomizerProtocol.h
 @@ -0,0 +1,13 @@
 +#pragma once
 +
@@ -25,7 +25,7 @@ index 508bd24..b5f2b44 100644
  #import <React/RCTSurfaceTouchHandler.h>
  #import <rnscreens/RNSSplitScreenComponentDescriptor.h>
  #import "RNSConversions.h"
-+#import "RNSNavigationItemCustomizer.h"
++#import "RNSNavigationItemCustomizerProtocol.h"
  #import "RNSSafeAreaViewNotifications.h"
  #import "RNSSplitScreenController.h"
  
@@ -45,3 +45,35 @@ index 508bd24..b5f2b44 100644
  - (void)updateState:(react::State::Shared const &)state oldState:(react::State::Shared const &)oldState
  {
    [super updateState:state oldState:oldState];
+diff --git a/ios/gamma/split/RNSSplitNavigationController.mm b/ios/gamma/split/RNSSplitNavigationController.mm
+index b884a59..612a1c0 100644
+--- a/ios/gamma/split/RNSSplitNavigationController.mm
++++ b/ios/gamma/split/RNSSplitNavigationController.mm
+@@ -28,6 +28,11 @@ - (void)viewDidLoad
+ {
+   [super viewDidLoad];
+ 
++#if !TARGET_OS_TV
++  // Screens opt in via `largeTitleDisplayMode`, which defaults to `.never` (see RNSSplitScreenController).
++  self.navigationBar.prefersLargeTitles = YES;
++#endif // !TARGET_OS_TV
++
+   if (_frameObserver == nil) {
+     _frameObserver = [[RNSSplitNavigationControllerFrameObserver alloc]
+         initWithSplitNavigationController:self
+diff --git a/ios/gamma/split/RNSSplitScreenController.mm b/ios/gamma/split/RNSSplitScreenController.mm
+index f97140a..c06f9d1 100644
+--- a/ios/gamma/split/RNSSplitScreenController.mm
++++ b/ios/gamma/split/RNSSplitScreenController.mm
+@@ -13,6 +13,11 @@ - (instancetype)initWithSplitScreenComponentView:(RNSSplitScreenComponentView *)
+ {
+   if (self = [super init]) {
+     _splitScreenComponentView = splitScreenComponentView;
++
++#if !TARGET_OS_TV
++    // Navigation bar prefers large titles, so opt out unless a navigation item customizer sets a mode.
++    self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeNever;
++#endif // !TARGET_OS_TV
+   }
+ 
+   return self;
