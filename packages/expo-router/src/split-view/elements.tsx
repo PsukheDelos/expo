@@ -80,16 +80,13 @@ function isSplitColumnNativeChild(child: ReactNode) {
 export function getSplitColumnChildren({ children, header }: SplitViewColumnProps) {
   const childrenArray = Children.toArray(children);
   const nativeChildren = childrenArray.filter(isSplitColumnNativeChild);
-  if (header) {
-    nativeChildren.unshift(<SplitViewColumnHeader key="header" header={header} />);
-  }
   const otherChildren = childrenArray.filter((child) => !isSplitColumnNativeChild(child));
-  if (otherChildren.length === 0) {
-    return nativeChildren;
-  }
   return [
     ...nativeChildren,
-    <SafeAreaProvider key="safe-area-provider">{otherChildren}</SafeAreaProvider>,
+    otherChildren.length > 0 && (
+      <SafeAreaProvider key="safe-area-provider">{otherChildren}</SafeAreaProvider>
+    ),
+    header && <SplitViewColumnHeader key="header" header={header} />,
   ];
 }
 
@@ -99,8 +96,8 @@ export function getSplitColumnChildren({ children, header }: SplitViewColumnProp
 export function SplitViewInspector({ children, header }: SplitViewColumnProps) {
   return (
     <Split.Inspector>
-      {header && <SplitViewColumnHeader header={header} />}
       {children}
+      {header && <SplitViewColumnHeader header={header} />}
     </Split.Inspector>
   );
 }

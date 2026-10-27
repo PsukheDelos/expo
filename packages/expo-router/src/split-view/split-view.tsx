@@ -95,8 +95,9 @@ function SplitViewNavigator({ children, activityEnabled, ...splitViewHostProps }
       <Split.Host key={numberOfSidebars + numberOfInspectors} {...splitViewHostProps}>
         {columns}
         <Split.Column>
-          {stackHeader && <SplitViewColumnHeader header={stackHeader} />}
+          {/* TODO(@ubax): Replace Slot with NativeStack (ENG-28658) */}
           <Slot activityEnabled={activityEnabled} />
+          {stackHeader && <SplitViewColumnHeader header={stackHeader} />}
         </Split.Column>
         {inspectorChildren}
       </Split.Host>
