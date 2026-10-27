@@ -1,8 +1,8 @@
-diff --git a/ios/RNSNavigationItemCustomizerProtocol.h b/ios/RNSNavigationItemCustomizerProtocol.h
+diff --git a/ios/RNSNavigationItemCustomizing.h b/ios/RNSNavigationItemCustomizing.h
 new file mode 100644
-index 0000000..a29cc9c
+index 0000000..275e8ac
 --- /dev/null
-+++ b/ios/RNSNavigationItemCustomizerProtocol.h
++++ b/ios/RNSNavigationItemCustomizing.h
 @@ -0,0 +1,13 @@
 +#pragma once
 +
@@ -10,22 +10,22 @@ index 0000000..a29cc9c
 +
 +NS_ASSUME_NONNULL_BEGIN
 +
-+@protocol RNSNavigationItemCustomizerProtocol <NSObject>
++@protocol RNSNavigationItemCustomizing <NSObject>
 +
-+- (void)customizeNavigationItem:(UINavigationItem *)navigationItem;
++- (void)configureNavigationItem:(UINavigationItem *)navigationItem;
 +
 +@end
 +
 +NS_ASSUME_NONNULL_END
 diff --git a/ios/gamma/split/RNSSplitScreenComponentView.mm b/ios/gamma/split/RNSSplitScreenComponentView.mm
-index 508bd24..b5f2b44 100644
+index 508bd24..6c7c99c 100644
 --- a/ios/gamma/split/RNSSplitScreenComponentView.mm
 +++ b/ios/gamma/split/RNSSplitScreenComponentView.mm
 @@ -3,6 +3,7 @@
  #import <React/RCTSurfaceTouchHandler.h>
  #import <rnscreens/RNSSplitScreenComponentDescriptor.h>
  #import "RNSConversions.h"
-+#import "RNSNavigationItemCustomizerProtocol.h"
++#import "RNSNavigationItemCustomizing.h"
  #import "RNSSafeAreaViewNotifications.h"
  #import "RNSSplitScreenController.h"
  
@@ -37,8 +37,8 @@ index 508bd24..b5f2b44 100644
 +{
 +  [super mountChildComponentView:childComponentView index:index];
 +
-+  if ([childComponentView conformsToProtocol:@protocol(RNSNavigationItemCustomizerProtocol)]) {
-+    [(id<RNSNavigationItemCustomizerProtocol>)childComponentView customizeNavigationItem:_controller.navigationItem];
++  if ([childComponentView conformsToProtocol:@protocol(RNSNavigationItemCustomizing)]) {
++    [(id<RNSNavigationItemCustomizing>)childComponentView configureNavigationItem:_controller.navigationItem];
 +  }
 +}
 +
