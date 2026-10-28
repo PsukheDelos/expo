@@ -1,5 +1,11 @@
 # expo-modules-test-core
 
+## 58.0.5
+
+### Patch Changes
+
+- [iOS] Drain the microtask queue after each task on the JavaScript thread of `TestAppContext`, like React Native does. Promise callbacks now run after the synchronous code, and long `await` loops no longer overflow the native stack. ([`f7841c4`](https://github.com/expo/expo/commit/f7841c432d1fce1fbe56dbe7d79b5f026b2727c2) by [@tsapeta](https://github.com/tsapeta))
+
 ## 58.0.4
 
 ### Patch Changes

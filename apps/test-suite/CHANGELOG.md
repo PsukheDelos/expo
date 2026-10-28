@@ -1,5 +1,22 @@
 # test-suite
 
+## 1.0.15
+
+### Patch Changes
+
+- Updated dependencies. ([`5da876b`](https://github.com/expo/expo/commit/5da876b33f5b8195b8d946771069ef2cad9a0e18), [`9170c7b`](https://github.com/expo/expo/commit/9170c7b2f6c53ea494de0918c01b5b5d2768e9da), [`551a450`](https://github.com/expo/expo/commit/551a4500188e8194d42963ec4ffdfd0e829b7841), [#52382](https://github.com/expo/expo/pull/52382))
+  - expo-modules-core@58.0.28
+  - @expo/ui@58.0.25
+  - expo-location@58.0.20
+  - expo@58.0.21
+  - expo-constants@58.0.14
+  - expo-router@58.0.28
+  - expo-asset@58.0.19
+  - expo-notifications@58.1.7
+  - expo-auth-session@58.0.16
+  - expo-linking@58.0.15
+  - expo-store-review@58.0.2
+
 ## 1.0.14
 
 ### Patch Changes

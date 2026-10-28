@@ -1,5 +1,15 @@
 # Changelog
 
+## 58.0.28
+
+### Patch Changes
+
+- [iOS] Add `EventEmitter.emit(event:payload:encode:)`, which emits a payload that a closure encodes into a slot. `expo-modules-macros` uses it for an `@Event` whose payload holds a tuple, which can't conform to `JavaScriptEncodable`. ([`5da876b`](https://github.com/expo/expo/commit/5da876b33f5b8195b8d946771069ef2cad9a0e18) by [@tsapeta](https://github.com/tsapeta))
+- [iOS] Update `expo-modules-macros` to 0.27.0, which converts Swift tuples in `@JS` members, `@Record` properties, `@Union` payloads, `@Event` payloads and closure arguments, and resolves the tuple type aliases declared in `@ExpoModule` and `@SharedObject` classes. ([`9170c7b`](https://github.com/expo/expo/commit/9170c7b2f6c53ea494de0918c01b5b5d2768e9da) by [@tsapeta](https://github.com/tsapeta))
+- [iOS] Reduce the overhead of passing an existing shared object to JavaScript, as a function result or an event payload, and of emitting events from shared objects. ([`551a450`](https://github.com/expo/expo/commit/551a4500188e8194d42963ec4ffdfd0e829b7841) by [@tsapeta](https://github.com/tsapeta))
+- Updated dependencies. ([`7b176fc`](https://github.com/expo/expo/commit/7b176fc6ffea29f20872b70e9667c97cfc435d74), [`53f5ebb`](https://github.com/expo/expo/commit/53f5ebb9bc4e6044cf41f7e98761b0e011f6ff08), [`60fa7d9`](https://github.com/expo/expo/commit/60fa7d9af41fd0212148a3f2263c469b5a51d229), [`98ecba7`](https://github.com/expo/expo/commit/98ecba740bfb7ca3ea1799cbf08f7198fa61bef3), [`11cab95`](https://github.com/expo/expo/commit/11cab951b40d5c31ea265894aacee0c6dc3b83ce), [`6e926d9`](https://github.com/expo/expo/commit/6e926d9ee91602a564fe8ee3a60d0f183c0168b2), [`1eac278`](https://github.com/expo/expo/commit/1eac2789acf534fdd6e47b633d330f2e1e99e783), [`749a6d4`](https://github.com/expo/expo/commit/749a6d4cfc023c0d2dd147a8e1f14756e64d1f73), [`f7841c4`](https://github.com/expo/expo/commit/f7841c432d1fce1fbe56dbe7d79b5f026b2727c2), [`5da876b`](https://github.com/expo/expo/commit/5da876b33f5b8195b8d946771069ef2cad9a0e18))
+  - expo-modules-jsi@58.0.21
+
 ## 58.0.27
 
 ### Patch Changes
